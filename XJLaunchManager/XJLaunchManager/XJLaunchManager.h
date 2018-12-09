@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)initWithLaunchViewClass:(Class)launchViewClass
         rootViewControllerClass:(Class)rootViewControllerClass;
 
-- (void)intoAppViewController:(UIViewController *)viewController;
+- (void)intoAppWithViewController:(UIViewController *)viewController;
 
 @end
 

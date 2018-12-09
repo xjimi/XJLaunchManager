@@ -102,7 +102,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDidIntoAppWindow object:nil];
 }
 
-- (void)intoAppViewController:(UIViewController *)viewController
+- (void)intoAppWithViewController:(UIViewController *)viewController
 {
     if ([UIApplication sharedApplication].delegate.window) return;
     [self createAppWindowWithViewController:viewController];
