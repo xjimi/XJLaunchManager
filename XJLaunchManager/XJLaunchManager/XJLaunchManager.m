@@ -87,22 +87,25 @@
     self.launchWindow = window;
 }
 
-- (void)createAppWindow
+- (void)createAppWindowWithViewController:(UIViewController *)viewController
 {
-    NSAssert([XJLaunchManager shared].rootViewControllerClass, @" 尚未設置 rootViewControllerClass ");
-
+    //NSAssert([XJLaunchManager shared].rootViewControllerClass, @" 尚未設置 rootViewControllerClass ");
+    if (!viewController) {
+        viewController = [[[XJLaunchManager shared].rootViewControllerClass alloc] init];
+    }
+    
     UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     window.backgroundColor = [UIColor blackColor];
-    window.rootViewController = [[[XJLaunchManager shared].rootViewControllerClass alloc] init];
+    window.rootViewController = viewController;
     [window makeKeyAndVisible];
     [UIApplication sharedApplication].delegate.window = window;
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDidIntoAppWindow object:nil];
 }
 
-- (void)intoAppWindow
+- (void)intoAppViewController:(UIViewController *)viewController
 {
     if ([UIApplication sharedApplication].delegate.window) return;
-    [self createAppWindow];
+    [self createAppWindowWithViewController:viewController];
     [UIView animateWithDuration:0.3 animations:^{
 
         self.launchWindow.alpha = 0;
