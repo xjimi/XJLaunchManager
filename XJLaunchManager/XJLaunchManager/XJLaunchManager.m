@@ -87,10 +87,11 @@
     self.launchWindow = window;
 }
 
-- (void)createAppWindowWithViewController:(UIViewController *)viewController
+- (void)createAppWindowWithViewController:(UIViewController * _Nullable)viewController
 {
-    //NSAssert([XJLaunchManager shared].rootViewControllerClass, @" 尚未設置 rootViewControllerClass ");
-    if (!viewController) {
+    if (!viewController)
+    {
+        NSAssert([XJLaunchManager shared].rootViewControllerClass, @" 尚未設置 rootViewControllerClass ");
         viewController = [[[XJLaunchManager shared].rootViewControllerClass alloc] init];
     }
     
@@ -102,7 +103,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDidIntoAppWindow object:nil];
 }
 
-- (void)intoAppWithViewController:(UIViewController *)viewController
+- (void)intoAppWithViewController:(UIViewController * _Nullable)viewController
 {
     if ([UIApplication sharedApplication].delegate.window) return;
     [self createAppWindowWithViewController:viewController];

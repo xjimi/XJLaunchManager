@@ -58,7 +58,7 @@
             [self adSkipDidPassDuration:_duration];
             if(_duration == 0)
             {
-                [self intoAppWindow];
+                [self dispatchSourceCancelSafe:self.skipTimer];
                 return;
             }
             _duration--;
@@ -70,10 +70,10 @@
 - (void)adSkipDidPassDuration:(NSInteger)duration {
 }
 
-- (void)intoAppWindow
+- (void)intoAppWithViewController:(UIViewController *)viewController
 {
     [self dispatchSourceCancelSafe:self.skipTimer];
-    [[XJLaunchManager shared] intoAppWindow];
+    [[XJLaunchManager shared] intoAppWithViewController:viewController];
 }
 
 - (void)dispatchSourceCancelSafe:(dispatch_source_t)time

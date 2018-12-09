@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)adSkipDidPassDuration:(NSInteger)duration;
 
-- (void)intoAppWindow;
+- (void)intoAppWithViewController:(UIViewController *)viewController;
 
 @end
 

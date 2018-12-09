@@ -10,6 +10,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import <Masonry/Masonry.h>
 #import "ViewController.h"
+#import "XJRemoteConfigManager.h"
 
 typedef void(^RetryBlock)(void);
 
@@ -186,7 +187,6 @@ typedef void(^RetryBlock)(void);
         
         if (configLoaded)
         {
-            [XJLaunchManager setRootViewControllerClass:ViewController.class];
             [weakSelf loadAdImageWithUrl:@"https://www.robinwesleyinstrumentals.com/wp-content/uploads/2018/06/Large-rectangle@05x.jpg"];
         }
         else if (!RemoteCONFIG.config && !RemoteCONFIG.adConfig)
@@ -226,6 +226,12 @@ typedef void(^RetryBlock)(void);
     }
 }
 
+- (void)intoAppWindow
+{
+    ViewController *vc = [[ViewController alloc] init];
+    [self intoAppWithViewController:vc];
+}
+
 - (void)errorViewHidden:(BOOL)hidden
 {
     [self bringSubviewToFront:self.launchErrorView];
@@ -237,6 +243,9 @@ typedef void(^RetryBlock)(void);
 - (void)adSkipDidPassDuration:(NSInteger)duration
 {
     NSLog(@"adSkipDidPassDuration : %ld", (long)duration);
+    if (!duration) {
+        [self intoAppWindow];
+    }
 }
 
 - (LaunchAdView *)launchAdView
