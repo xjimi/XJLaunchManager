@@ -24,10 +24,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)initWithLaunchViewClass:(Class)launchViewClass;
 
-+ (void)setRootViewControllerClass:(Class _Nullable)rootViewControllerClass;
++ (void)setRootViewControllerClass:(Class)rootViewControllerClass;
 
 + (void)initWithLaunchViewClass:(Class)launchViewClass
-        rootViewControllerClass:(Class _Nullable)rootViewControllerClass;
+        rootViewControllerClass:(Class)rootViewControllerClass;
 
 - (void)intoAppWindow;
 

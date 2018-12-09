@@ -58,8 +58,8 @@
 }
 
 + (void)initWithLaunchViewClass:(Class)launchViewClass {
-    [XJLaunchManager initWithLaunchViewClass:launchViewClass
-                     rootViewControllerClass:nil];
+    [XJLaunchManager shared].launchViewClass = launchViewClass;
+    [[XJLaunchManager shared] createLaunchWindow];
 }
 
 + (void)setRootViewControllerClass:(Class)rootViewControllerClass {
@@ -67,7 +67,7 @@
 }
 
 + (void)initWithLaunchViewClass:(Class)launchViewClass
-        rootViewControllerClass:(Class _Nullable)rootViewControllerClass
+        rootViewControllerClass:(Class)rootViewControllerClass
 {
     [XJLaunchManager shared].launchViewClass = launchViewClass;
     [XJLaunchManager shared].rootViewControllerClass = rootViewControllerClass;
