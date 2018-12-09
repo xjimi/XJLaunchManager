@@ -1,24 +1,39 @@
 //
-//  RemoteConfigManager+Extension.m
+//  RemoteConfigManager.m
 //  News
 //
-//  Created by XJIMI on 2018/12/7.
+//  Created by XJIMI on 2018/12/6.
 //  Copyright © 2018 setn. All rights reserved.
 //
 
-#import "XJRemoteConfigManager+Custom.h"
-#import <objc/runtime.h>
+#import "XJRemoteConfigManager.h"
 
-static const char *kConfigPropertyKey = "kConfigPropertyKey";
+@interface XJRemoteConfigManager ()
 
-static const char *kAdConfigPropertyKey = "kAdConfigPropertyKey";
+@end
 
-@implementation XJRemoteConfigManager (Custom)
+@implementation XJRemoteConfigManager
+
++ (instancetype)shared
+{
+    static XJRemoteConfigManager *shared = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        shared = [[XJRemoteConfigManager alloc] init];
+    });
+    return shared;
+}
+
+- (void)loadConfigDataWithCompletion:(ConfigCompletionBlock)completion
+{
+    self.configCompletionBlock = completion;
+    [self loadConfigData];
+}
 
 - (void)loadConfigData
 {
     [self loadAdConfigData];
-
+    
     if (self.config)
     {
         [RemoteCONFIG dispatchConfigBlock];
@@ -30,22 +45,22 @@ static const char *kAdConfigPropertyKey = "kAdConfigPropertyKey";
         NSLog(@"取得 Config data ");
         self.config = [RemoteConfigModel new];
         [RemoteCONFIG dispatchConfigBlock];
-
+        
     });
-
+    
 }
 
 - (void)loadAdConfigData
 {
     if (self.adConfig) return;
-
+    
     __weak typeof(self)weakSelf = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         NSLog(@"取得 AD Config data ");
         weakSelf.adConfig = [NSMutableDictionary dictionary];
         [weakSelf dispatchConfigBlock];
-
+        
     });
 }
 
@@ -53,20 +68,8 @@ static const char *kAdConfigPropertyKey = "kAdConfigPropertyKey";
     return self.config && self.adConfig;
 }
 
-- (RemoteConfigModel *)config {
-    return objc_getAssociatedObject(self, kConfigPropertyKey);
-}
-
-- (void)setConfig:(RemoteConfigModel *)config {
-    objc_setAssociatedObject(self,kConfigPropertyKey, config, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (NSMutableDictionary *)adConfig {
-    return objc_getAssociatedObject(self, kAdConfigPropertyKey);
-}
-
-- (void)setAdConfig:(NSMutableDictionary *)adConfig {
-    objc_setAssociatedObject(self, kAdConfigPropertyKey, adConfig, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)dispatchConfigBlock {
+    !self.configCompletionBlock ? : self.configCompletionBlock([self isLoaded]);
 }
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "XJRemoteConfigManagerProtocol.h"
+#import "RemoteConfigModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,15 +15,23 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^ConfigCompletionBlock)(BOOL configLoaded);
 
-@interface XJRemoteConfigManager : NSObject < XJRemoteConfigManagerProtocol >
+typedef void(^AdConfigCompletionBlock)(NSMutableDictionary *adConfig);
+
+@interface XJRemoteConfigManager : NSObject
 
 @property (nonatomic, copy) ConfigCompletionBlock configCompletionBlock;
+
+@property (nonatomic, strong) RemoteConfigModel *config;
+
+@property (nonatomic, strong) NSMutableDictionary *adConfig;
 
 + (instancetype)shared;
 
 - (void)loadConfigDataWithCompletion:(ConfigCompletionBlock)completion;
 
 - (void)dispatchConfigBlock;
+
+- (BOOL)isLoaded;
 
 @end
 

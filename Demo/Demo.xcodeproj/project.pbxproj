@@ -20,7 +20,6 @@
 		9055F2E821BBFF8600C32F41 /* XJLaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9055F2E121BBFF8500C32F41 /* XJLaunchViewController.m */; };
 		9055F2E921BBFF8600C32F41 /* XJLaunchSourceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9055F2E321BBFF8500C32F41 /* XJLaunchSourceView.m */; };
 		9055F2F321BC06EA00C32F41 /* LaunchCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9055F2F221BC06EA00C32F41 /* LaunchCustomView.m */; };
-		9055F2FB21BC091300C32F41 /* XJRemoteConfigManager+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 9055F2F921BC091300C32F41 /* XJRemoteConfigManager+Custom.m */; };
 		9055F30021BC0A4900C32F41 /* RemoteConfigModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9055F2FF21BC0A4900C32F41 /* RemoteConfigModel.m */; };
 		9068C4F121BCD54300FF5321 /* XJRemoteConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9068C4EF21BCD54300FF5321 /* XJRemoteConfigManager.m */; };
 		D2AD7BCABB4F6A8E71D8BC2F /* Pods_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D554928790E23A72E63E4D0 /* Pods_Demo.framework */; };
@@ -71,13 +70,10 @@
 		9055F2E521BBFF8500C32F41 /* XJLaunchManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJLaunchManager.h; sourceTree = "<group>"; };
 		9055F2F121BC06EA00C32F41 /* LaunchCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchCustomView.h; sourceTree = "<group>"; };
 		9055F2F221BC06EA00C32F41 /* LaunchCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchCustomView.m; sourceTree = "<group>"; };
-		9055F2F921BC091300C32F41 /* XJRemoteConfigManager+Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XJRemoteConfigManager+Custom.m"; sourceTree = "<group>"; };
-		9055F2FA21BC091300C32F41 /* XJRemoteConfigManager+Custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XJRemoteConfigManager+Custom.h"; sourceTree = "<group>"; };
 		9055F2FE21BC0A4900C32F41 /* RemoteConfigModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RemoteConfigModel.h; sourceTree = "<group>"; };
 		9055F2FF21BC0A4900C32F41 /* RemoteConfigModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RemoteConfigModel.m; sourceTree = "<group>"; };
 		9068C4EE21BCD54300FF5321 /* XJRemoteConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJRemoteConfigManager.h; sourceTree = "<group>"; };
 		9068C4EF21BCD54300FF5321 /* XJRemoteConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJRemoteConfigManager.m; sourceTree = "<group>"; };
-		9068C4F021BCD54300FF5321 /* XJRemoteConfigManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJRemoteConfigManagerProtocol.h; sourceTree = "<group>"; };
 		A5ABDD8D3941A80F50F4BC04 /* Pods-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		F42CA260CB5CD26F60BC1C54 /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -180,20 +176,9 @@
 			isa = PBXGroup;
 			children = (
 				9055F2EF21BC003A00C32F41 /* XJLaunchManager */,
-				9055F2EA21BBFFF800C32F41 /* XJRemoteConfigManager */,
 			);
 			name = XJLaunchManager;
 			path = ../XJLaunchManager;
-			sourceTree = "<group>";
-		};
-		9055F2EA21BBFFF800C32F41 /* XJRemoteConfigManager */ = {
-			isa = PBXGroup;
-			children = (
-				9068C4EE21BCD54300FF5321 /* XJRemoteConfigManager.h */,
-				9068C4EF21BCD54300FF5321 /* XJRemoteConfigManager.m */,
-				9068C4F021BCD54300FF5321 /* XJRemoteConfigManagerProtocol.h */,
-			);
-			path = XJRemoteConfigManager;
 			sourceTree = "<group>";
 		};
 		9055F2EF21BC003A00C32F41 /* XJLaunchManager */ = {
@@ -224,8 +209,8 @@
 			isa = PBXGroup;
 			children = (
 				9055F2FC21BC0A2700C32F41 /* Model */,
-				9055F2FA21BC091300C32F41 /* XJRemoteConfigManager+Custom.h */,
-				9055F2F921BC091300C32F41 /* XJRemoteConfigManager+Custom.m */,
+				9068C4EE21BCD54300FF5321 /* XJRemoteConfigManager.h */,
+				9068C4EF21BCD54300FF5321 /* XJRemoteConfigManager.m */,
 			);
 			path = RemoteConfig;
 			sourceTree = "<group>";
@@ -441,7 +426,6 @@
 				9068C4F121BCD54300FF5321 /* XJRemoteConfigManager.m in Sources */,
 				9055F2E621BBFF8600C32F41 /* XJLaunchView.m in Sources */,
 				9055F2AE21BBFED800C32F41 /* main.m in Sources */,
-				9055F2FB21BC091300C32F41 /* XJRemoteConfigManager+Custom.m in Sources */,
 				9055F2E821BBFF8600C32F41 /* XJLaunchViewController.m in Sources */,
 				9055F2E721BBFF8600C32F41 /* XJLaunchManager.m in Sources */,
 				9055F2A021BBFED500C32F41 /* AppDelegate.m in Sources */,

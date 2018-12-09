@@ -7,7 +7,6 @@
 //
 
 #import "LaunchCustomView.h"
-#import "XJRemoteConfigManager+Custom.h"
 #import <AFNetworking/AFNetworking.h>
 #import <Masonry/Masonry.h>
 #import "ViewController.h"

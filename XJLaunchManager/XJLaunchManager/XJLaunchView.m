@@ -31,19 +31,15 @@
 {
     __weak typeof(self)weakSelf = self;
     [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidEnterBackgroundNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+        
         [weakSelf dispatchSourceCancelSafe:weakSelf.skipTimer];
+        
     }];
     
     [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationWillEnterForegroundNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
         
-        if (![RemoteCONFIG isLoaded])
-        {
-            [weakSelf loadConfigData];
-            return;
-        }
-        
-        [weakSelf intoAppWindow];
-        
+        [weakSelf loadConfigData];
+
     }];
 }
 
