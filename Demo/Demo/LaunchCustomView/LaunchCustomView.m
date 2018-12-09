@@ -144,10 +144,6 @@ typedef void(^RetryBlock)(void);
 
 - (void)createView
 {
-    
-    XJLaunchSourceView *launchSourceView = [[XJLaunchSourceView alloc] initWithLaunchSourceType:[XJLaunchManager shared].launchSourceType];
-    [self addSubview:launchSourceView];
-    
     __weak typeof(self)weakSelf = self;
     _launchErrorView = [[LaunchErrorView alloc] initWithRetryBlock:^{
         [weakSelf loadConfigData];
@@ -187,7 +183,7 @@ typedef void(^RetryBlock)(void);
         
         if (configLoaded)
         {
-            [weakSelf loadAdImageWithUrl:@"https://www.robinwesleyinstrumentals.com/wp-content/uploads/2018/06/Large-rectangle@05x.jpg"];
+            [weakSelf loadAdImageWithUrl:@"https://www.robinwesleyinstrumentals.com/wp-content/uploads/2018/06/Large-rectangles@05x.jpg"];
         }
         else if (!RemoteCONFIG.config && !RemoteCONFIG.adConfig)
         {

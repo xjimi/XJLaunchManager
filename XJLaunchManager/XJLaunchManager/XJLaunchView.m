@@ -22,9 +22,16 @@
     if (self)
     {
         self.frame = [UIScreen mainScreen].bounds;
+        [self createLaunchSourceView];
         [self addNotifications];
     }
     return self;
+}
+
+- (void)createLaunchSourceView
+{
+    XJLaunchSourceView *launchSourceView = [[XJLaunchSourceView alloc] initWithLaunchSourceType:[XJLaunchManager shared].launchSourceType];
+    [self addSubview:launchSourceView];
 }
 
 - (void)addNotifications
