@@ -14,10 +14,6 @@
 
 @implementation XJLaunchViewController
 
-- (void)dealloc {
-    NSLog(@"%s", __func__);
-}
-
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskPortrait;
 }

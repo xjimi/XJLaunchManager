@@ -21,8 +21,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [XJLaunchManager setLaunchSourceType:LaunchSourceTypeScreen];
-    [XJLaunchManager initWithLaunchViewClass:LaunchCustomView.class
-                     rootViewControllerClass:ViewController.class];
+    [XJLaunchManager initWithLaunchViewClass:LaunchCustomView.class];
 
     return YES;
 }

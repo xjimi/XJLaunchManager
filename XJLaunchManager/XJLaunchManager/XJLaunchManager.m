@@ -57,8 +57,17 @@
     [XJLaunchManager shared].launchSourceType = launchSourceType;
 }
 
++ (void)initWithLaunchViewClass:(Class)launchViewClass {
+    [XJLaunchManager initWithLaunchViewClass:launchViewClass
+                     rootViewControllerClass:nil];
+}
+
++ (void)setRootViewControllerClass:(Class)rootViewControllerClass {
+    [XJLaunchManager shared].rootViewControllerClass = rootViewControllerClass;
+}
+
 + (void)initWithLaunchViewClass:(Class)launchViewClass
-        rootViewControllerClass:(Class)rootViewControllerClass
+        rootViewControllerClass:(Class _Nullable)rootViewControllerClass
 {
     [XJLaunchManager shared].launchViewClass = launchViewClass;
     [XJLaunchManager shared].rootViewControllerClass = rootViewControllerClass;
@@ -79,6 +88,8 @@
 
 - (void)createAppWindow
 {
+    NSAssert([XJLaunchManager shared].rootViewControllerClass, @" 尚未設置 rootViewControllerClass ");
+
     UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     window.backgroundColor = [UIColor blackColor];
     window.rootViewController = [[[XJLaunchManager shared].rootViewControllerClass alloc] init];
@@ -90,7 +101,6 @@
 - (void)intoAppWindow
 {
     if ([UIApplication sharedApplication].delegate.window) return;
-    
     [self createAppWindow];
     [UIView animateWithDuration:0.3 animations:^{
 

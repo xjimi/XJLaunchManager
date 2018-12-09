@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XJLaunchView : UIView
 
+- (void)loadConfigData;
+
 - (void)startSkipTimerWithDuration:(NSInteger)duration;
 
 - (void)adSkipDidPassDuration:(NSInteger)duration;

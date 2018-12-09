@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name          = "XJLaunchManager"
-  s.version       = "0.0.1"
+  s.version       = "0.0.2"
   s.summary       = "Management APP Launch process"
   s.homepage      = "https://github.com/xjimi/XJLaunchManager"
   s.license       = { :type => 'MIT', :file => 'LICENSE' }

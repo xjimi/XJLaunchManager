@@ -10,6 +10,7 @@
 #import "XJRemoteConfigManager+Custom.h"
 #import <AFNetworking/AFNetworking.h>
 #import <Masonry/Masonry.h>
+#import "ViewController.h"
 
 typedef void(^RetryBlock)(void);
 
@@ -186,6 +187,7 @@ typedef void(^RetryBlock)(void);
         
         if (configLoaded)
         {
+            [XJLaunchManager setRootViewControllerClass:ViewController.class];
             [weakSelf loadAdImageWithUrl:@"https://www.robinwesleyinstrumentals.com/wp-content/uploads/2018/06/Large-rectangle@05x.jpg"];
         }
         else if (!RemoteCONFIG.config && !RemoteCONFIG.adConfig)

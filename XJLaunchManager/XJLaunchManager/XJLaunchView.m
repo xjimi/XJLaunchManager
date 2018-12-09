@@ -16,10 +16,6 @@
 
 @implementation XJLaunchView
 
-- (void)dealloc {
-    NSLog(@"%s", __func__);
-}
-
 - (instancetype)init
 {
     self = [super init];
@@ -42,13 +38,16 @@
         
         if (![RemoteCONFIG isLoaded])
         {
-            [weakSelf intoAppWindow];
+            [weakSelf loadConfigData];
             return;
         }
         
         [weakSelf intoAppWindow];
         
     }];
+}
+
+- (void)loadConfigData {
 }
 
 - (void)startSkipTimerWithDuration:(NSInteger)duration
