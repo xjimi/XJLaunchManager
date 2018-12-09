@@ -7,10 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Masonry/Masonry.h>
 #import "XJLaunchManager.h"
 #import "XJRemoteConfigManager.h"
-#import <AFNetworking/AFNetworking.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
