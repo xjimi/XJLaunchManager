@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "XJLaunchManager.h"
-#import "XJRemoteConfigManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
