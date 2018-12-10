@@ -80,8 +80,8 @@
     window.backgroundColor = [UIColor blackColor];
     window.rootViewController = [[XJLaunchViewController alloc] init];
     window.windowLevel = UIWindowLevelStatusBar + 1;
-    //window.hidden = NO;
-    [window makeKeyAndVisible];
+    window.hidden = NO;
+    //[window makeKeyAndVisible];
     XJLaunchView *launchView = [[[XJLaunchManager shared].launchViewClass alloc] init];
     [window addSubview:launchView];
     self.launchWindow = window;
@@ -124,6 +124,7 @@
         }];
         self.launchWindow.hidden = YES;
         self.launchWindow = nil;
+
 
     }];
 }

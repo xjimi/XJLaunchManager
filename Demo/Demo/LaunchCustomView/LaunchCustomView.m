@@ -183,7 +183,7 @@ typedef void(^RetryBlock)(void);
         
         if (configLoaded)
         {
-            [weakSelf loadAdImageWithUrl:@"https://www.robinwesleyinstrumentals.com/wp-content/uploads/2018/06/Large-rectangles@05x.jpg"];
+            [weakSelf loadAdImageWithUrl:@"https://www.robinwesleyinstrumentals.com/wp-content/uploads/2018/06/Large-rectangle@05x.jpg"];
         }
         else if (!RemoteCONFIG.config && !RemoteCONFIG.adConfig)
         {
@@ -200,7 +200,8 @@ typedef void(^RetryBlock)(void);
         [self intoAppWindow];
         return;
     }
-    
+
+
     NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
     UIImage *image = [UIImage imageWithData:imageData];
     if (image)

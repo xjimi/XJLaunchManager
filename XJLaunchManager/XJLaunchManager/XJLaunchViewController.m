@@ -14,6 +14,14 @@
 
 @implementation XJLaunchViewController
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return NO;
+}
+
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskPortrait;
 }
@@ -21,6 +29,5 @@
 - (BOOL)prefersHomeIndicatorAutoHidden {
     return NO;
 }
-
 
 @end
