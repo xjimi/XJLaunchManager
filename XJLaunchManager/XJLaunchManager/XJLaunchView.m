@@ -77,7 +77,7 @@
 - (void)adSkipDidPassDuration:(NSInteger)duration {
 }
 
-- (void)intoAppWithViewController:(UIViewController *)viewController
+- (void)intoAppWithViewController:(UIViewController * _Nullable)viewController
 {
     [self dispatchSourceCancelSafe:self.skipTimer];
     [[XJLaunchManager shared] intoAppWithViewController:viewController];

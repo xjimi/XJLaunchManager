@@ -115,7 +115,7 @@
 {
     if ([UIApplication sharedApplication].delegate.window) return;
     [self createAppWindowWithViewController:viewController];
-    [UIView animateWithDuration:.3 animations:^{
+    [UIView animateWithDuration:1 animations:^{
 
         self.launchWindow.alpha = 0;
         
