@@ -7,6 +7,7 @@
 //
 
 #import "XJLaunchViewController.h"
+#import "XJLaunchManager.h"
 
 @interface XJLaunchViewController ()
 
@@ -15,10 +16,14 @@
 @implementation XJLaunchViewController
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+    return [XJLaunchManager shared].launchViewControllerStatusBarStyle;
 }
 
-- (BOOL)prefersStatusBarHidden {
+- (BOOL)prefersStatusBarHidden
+{
+    if ([XJLaunchManager shared].launchViewControllerStatusBarStyle == -1) {
+        return YES;
+    }
     return NO;
 }
 

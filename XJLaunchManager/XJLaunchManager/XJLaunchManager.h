@@ -14,13 +14,24 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, LaunchStatusBarStyle) {
+    LaunchStatusBarStyleHidden = -1,
+    LaunchStatusBarStyleDefault = UIStatusBarStyleDefault,
+    LaunchStatusBarStyleLightContent = UIStatusBarStyleLightContent,
+};
+
 @interface XJLaunchManager : NSObject
 
-@property (nonatomic, assign) LaunchSourceType launchSourceType;
+@property (nonatomic, assign, readonly) LaunchSourceType launchSourceType;
+
+@property (nonatomic, assign, readonly) LaunchStatusBarStyle launchViewControllerStatusBarStyle;
+
 
 + (instancetype)shared;
 
 + (void)setLaunchSourceType:(LaunchSourceType)launchSourceType;
+
++ (void)setLaunchViewControllerStatusBarStyle:(LaunchStatusBarStyle)statusBarStyle;
 
 + (void)initWithLaunchViewClass:(Class)launchViewClass;
 

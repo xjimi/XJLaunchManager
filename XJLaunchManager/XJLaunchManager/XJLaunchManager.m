@@ -18,6 +18,10 @@
 
 @property (nonatomic, strong) Class rootViewControllerClass;
 
+@property (nonatomic, assign) LaunchSourceType launchSourceType;
+
+@property (nonatomic, assign) LaunchStatusBarStyle launchViewControllerStatusBarStyle;
+
 @end
 
 @implementation XJLaunchManager
@@ -52,6 +56,10 @@
     NSLog(@"applicationDidFinishLaunchingNotification ----");
 }
  */
+
++ (void)setLaunchViewControllerStatusBarStyle:(LaunchStatusBarStyle)statusBarStyle {
+    [XJLaunchManager shared].launchViewControllerStatusBarStyle = statusBarStyle;
+}
 
 + (void)setLaunchSourceType:(LaunchSourceType)launchSourceType {
     [XJLaunchManager shared].launchSourceType = launchSourceType;

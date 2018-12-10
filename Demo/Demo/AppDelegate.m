@@ -21,6 +21,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [XJLaunchManager setLaunchSourceType:LaunchSourceTypeScreen];
+    [XJLaunchManager setLaunchViewControllerStatusBarStyle:LaunchStatusBarStyleLightContent];
     [XJLaunchManager initWithLaunchViewClass:LaunchCustomView.class];
 
     return YES;
