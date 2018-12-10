@@ -22,6 +22,8 @@
 
 @property (nonatomic, assign) LaunchStatusBarStyle launchViewControllerStatusBarStyle;
 
+@property (nonatomic, assign) NSTimeInterval intoAppAnimateDuration;
+
 @end
 
 @implementation XJLaunchManager
@@ -36,6 +38,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         shared = [[XJLaunchManager alloc] init];
+        shared.intoAppAnimateDuration = 0.3;
     });
     return shared;
 }
@@ -63,6 +66,10 @@
 
 + (void)setLaunchSourceType:(LaunchSourceType)launchSourceType {
     [XJLaunchManager shared].launchSourceType = launchSourceType;
+}
+
++ (void)setIntoAppAnimateDuration:(NSTimeInterval)duration {
+    [XJLaunchManager shared].intoAppAnimateDuration = duration;
 }
 
 + (void)initWithLaunchViewClass:(Class)launchViewClass {
@@ -115,7 +122,7 @@
 {
     if ([UIApplication sharedApplication].delegate.window) return;
     [self createAppWindowWithViewController:viewController];
-    [UIView animateWithDuration:1 animations:^{
+    [UIView animateWithDuration:self.intoAppAnimateDuration animations:^{
 
         self.launchWindow.alpha = 0;
         

@@ -33,6 +33,8 @@ typedef NS_ENUM(NSUInteger, LaunchStatusBarStyle) {
 
 + (void)setLaunchViewControllerStatusBarStyle:(LaunchStatusBarStyle)statusBarStyle;
 
++ (void)setIntoAppAnimateDuration:(NSTimeInterval)duration;
+
 + (void)initWithLaunchViewClass:(Class)launchViewClass;
 
 + (void)setRootViewControllerClass:(Class)rootViewControllerClass;
