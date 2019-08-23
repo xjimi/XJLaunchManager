@@ -10,6 +10,10 @@
 
 @implementation XJLaunchSourceView
 
+- (void)dealloc {
+    NSLog(@"%s", __func__);
+}
+
 - (instancetype)initWithLaunchSourceType:(LaunchSourceType)launchSourceType
 {
     self = [super init];

@@ -144,6 +144,8 @@ typedef void(^RetryBlock)(void);
 
 - (void)createView
 {
+    self.backgroundColor = [UIColor redColor];
+    
     __weak typeof(self)weakSelf = self;
     _launchErrorView = [[LaunchErrorView alloc] initWithRetryBlock:^{
         [weakSelf loadConfigData];
@@ -177,15 +179,17 @@ typedef void(^RetryBlock)(void);
 
 - (void)loadConfigData
 {
+    if (RemoteCONFIG.isLoaded) return;
+    
     [self errorViewHidden:YES];
     __weak typeof(self)weakSelf = self;
     [RemoteCONFIG loadConfigDataWithCompletion:^(BOOL configLoaded) {
-        
+
         if (configLoaded)
         {
-            [weakSelf loadAdImageWithUrl:@"https://www.robinwesleyinstrumentals.com/wp-content/uploads/2018/06/Large-rectangle@05x.jpg"];
+            [weakSelf loadAdImageWithUrl:@"https://media.gettyimages.com/photos/portrait-of-chris-martin-from-the-band-coldplay-backstage-at-the-in-picture-id82646434"];
         }
-        else if (!RemoteCONFIG.config && !RemoteCONFIG.adConfig)
+        else if (!RemoteCONFIG.isLoaded)
         {
             [weakSelf errorViewHidden:NO];
         }
@@ -213,7 +217,7 @@ typedef void(^RetryBlock)(void);
             
         } completion:^(BOOL finished) {
             
-            [self startSkipTimerWithDuration:3];
+            [self startSkipTimerWithDuration:5];
             
         }];
     }

@@ -16,6 +16,12 @@
 
 @implementation XJLaunchView
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    NSLog(@"%s", __func__);
+}
+
 - (instancetype)init
 {
     self = [super init];
@@ -34,22 +40,6 @@
     [self addSubview:launchSourceView];
 }
 
-- (void)addNotifications
-{
-    __weak typeof(self)weakSelf = self;
-    [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidEnterBackgroundNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
-        
-        [weakSelf dispatchSourceCancelSafe:weakSelf.skipTimer];
-        
-    }];
-    
-    [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationWillEnterForegroundNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
-        
-        [weakSelf loadConfigData];
-
-    }];
-}
-
 - (void)loadConfigData {
 }
 
@@ -61,7 +51,7 @@
     dispatch_source_set_timer(_skipTimer, dispatch_walltime(NULL, 0), period * NSEC_PER_SEC, 0);
     dispatch_source_set_event_handler(_skipTimer, ^{
         dispatch_async(dispatch_get_main_queue(), ^{
-            
+
             [self adSkipDidPassDuration:_duration];
             if(_duration == 0)
             {
@@ -90,6 +80,15 @@
         dispatch_source_cancel(time);
         time = nil;
     }
+}
+
+- (void)addNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterForegroundNotification:) name:UIApplicationWillEnterForegroundNotification object:nil];
+}
+
+- (void)applicationWillEnterForegroundNotification:(NSNotification *)notification {
+    [self loadConfigData];
 }
 
 @end

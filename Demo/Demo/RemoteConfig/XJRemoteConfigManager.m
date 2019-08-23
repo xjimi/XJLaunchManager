@@ -10,6 +10,8 @@
 
 @interface XJRemoteConfigManager ()
 
+@property (nonatomic, assign) NSInteger currentNum;
+
 @end
 
 @implementation XJRemoteConfigManager
@@ -32,27 +34,32 @@
 
 - (void)loadConfigData
 {
-    [self loadAdConfigData];
-    
     if (self.config)
     {
-        [RemoteCONFIG dispatchConfigBlock];
+        [self loadAdConfigData];
         return;
     }
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         NSLog(@"取得 Config data ");
-        self.config = [RemoteConfigModel new];
-        [RemoteCONFIG dispatchConfigBlock];
-        
+        if (self.currentNum == 1) {
+            self.config = [RemoteConfigModel new];
+        }
+
+        [self loadAdConfigData];
+
     });
     
 }
 
 - (void)loadAdConfigData
 {
-    if (self.adConfig) return;
+    if (self.adConfig)
+    {
+        [RemoteCONFIG dispatchConfigBlock];
+        return;
+    }
     
     __weak typeof(self)weakSelf = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -60,12 +67,14 @@
         NSLog(@"取得 AD Config data ");
         weakSelf.adConfig = [NSMutableDictionary dictionary];
         [weakSelf dispatchConfigBlock];
-        
+
+        self.currentNum ++;
+
     });
 }
 
 - (BOOL)isLoaded {
-    return self.config && self.adConfig;
+    return self.config;
 }
 
 - (void)dispatchConfigBlock {

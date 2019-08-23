@@ -15,6 +15,10 @@
 
 @implementation XJLaunchViewController
 
+- (void)dealloc {
+    NSLog(@"%s", __func__);
+}
+
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return [XJLaunchManager shared].launchViewControllerStatusBarStyle;
 }
